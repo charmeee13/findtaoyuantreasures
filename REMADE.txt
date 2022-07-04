@@ -1,0 +1,26 @@
+localStorage:有什麼key 代表什麼
+factory_game 要呼叫的API 其請求方式 POST 回傳資料 user_info_if factory_id
+
+
+
+
+API:
+這隻的描述
+
+http://127.0.0.1:4000/game/class1
+POST
+Content-Type : application/json
+
+請求
+{
+    ‘user_info_id’：‘54654-899789-798798’,
+    'factory_id': 1,
+}
+
+回傳：
+{
+    'message': 'ok'
+}
+
+
+

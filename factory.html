@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>factoryPage</title>
+    <style>
+        .contain {
+            background-image: url("https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/Img_backgroundimage_3.png");
+            background-size: cover;
+            width: 500px;
+            height: 900px;
+            /* width: 100%; */
+            display: block;
+            margin: auto;
+        }
+
+        .text {
+            padding-top: 190px;
+            padding-bottom: 40px;
+            width: 350px;
+            display: block;
+            margin: auto;
+        }
+        
+        ul{
+            list-style: none;
+        }
+
+        .grid {
+            padding-left: 35px;
+            padding-right: 35px;
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+            grid-template-rows: 25% 25% 25% 25%;
+        }
+
+        .grid img {
+            width: 100px;
+        }
+
+        .grid div {
+            text-align: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <img class="text" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/text_3.png" alt="">
+        <ul class="grid" id="ul">
+            <li id="href" href="" data-id="1"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory1.png" alt=""></li>
+            <li id="href" href="" data-id="2"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory2.png" alt=""></li>
+            <li id="href" href="" data-id="3"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory3.png" alt=""></li>
+            <li id="href" href="" data-id="4"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory4.png" alt=""></li>
+            <li id="href" href="" data-id="5"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory5.png" alt=""></li>
+            <li id="href" href="" data-id="6"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory6.png" alt=""></li>
+            <li id="href" href="" data-id="7"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory7.png" alt=""></li>
+            <li id="href" href="" data-id="8"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory8.png" alt=""></li>
+            <li id="href" href="" data-id="9"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory9.png" alt=""></li>
+            <li id="href" href="" data-id="10"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory10.png" alt=""></li>
+            <li id="href" href="" data-id="11"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory11.png" alt=""></li>
+            <li id="href" href="" data-id="12"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory12.png" alt=""></li>
+            <li id="href" href="" data-id="13"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory13.png" alt=""></a>
+            <li id="href" href="" data-id="14"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory14.png" alt=""></a>
+            <li id="href" href="" data-id="15"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory15.png" alt=""></a>
+            <li id="href" href="" data-id="16"> <img
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/3/btn_factory16.png" alt=""></li>
+        </ul>
+
+
+
+
+
+    </div>
+    <script>
+
+        var user_info_id = localStorage.getItem('user_info_id')
+
+        var click_href = document.getElementById("ul");
+        click_href.addEventListener('click', function (e) {
+                let targetId = $(e.target).closest('li').data('id');
+                console.log(targetId)
+                localStorage.setItem('factory_id',targetId)
+                location.href = `./factory_info.html`;
+         })
+
+        // $(document).on('click', (e) => {
+        //     let targetId = $(e.target).closest('li').data('id');
+        //     // console.log(targetId)
+        //     localStorage.setItem('factory_id',targetId)
+        //     location.href = `./factory_info.html`;
+        // })
+
+        // const result = fetch('http://127.0.0.1:4000/factory', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         user_info_id,
+        //     })
+        // }).then((res) => res.json())
+        //     .then((res2) => {
+        //         console.log(res2)
+                
+        //         $(document).on('click', (e) => {
+        //             let targetId = $(e.target).closest('li').data('id');
+        //             // console.log(targetId)
+        //             localStorage.setItem('factory_id',targetId)
+        //             location.href = `./factory_info.html`;
+        //         })
+
+        //         console.log(res2.factory_list[i].id)
+
+        //     })
+
+    </script>
+</body>
+
+</html>

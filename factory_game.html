@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>factoryGame</title>
+
+    <style>
+        .contain {
+            background-image: url("https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/Img_backgroundimage_4.png");
+            /* background-image: url("https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/5/Img_backgroundimage_5_1.png"); */
+            background-size: cover;
+            width: 500px;
+            height: 900px;
+            /* width: 100%; */
+            display: block;
+            margin: auto;
+        }
+
+        .modal {
+            padding-top: 50%;
+            width: 200px;
+            display: block;
+            margin: auto;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="contain" id="modall">
+        <img class="modal" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/5/img_finish.png" alt="">
+    </div>
+    <script>
+
+        var user_info_id = localStorage.getItem('user_info_id')
+        var factory_id = localStorage.getItem('factory_id')
+        var mission_id = localStorage.getItem('mission_id')
+        var class1_state = localStorage.getItem('class1_state')
+        var class2_state = localStorage.getItem('class2_state')
+        var class3_state = localStorage.getItem('class3_state')
+
+        console.log(class1_state)
+        console.log(class2_state)
+        console.log(class3_state)
+
+        //做個按鈕 點下去就update
+        //class1
+        if (class1_state === 'false') {
+            var clearance = document.getElementById('modall')
+            clearance.addEventListener('click', function () {
+                //console.log('clearance')
+                const result = fetch('http://127.0.0.1:4000/game/class1', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_info_id,
+                        factory_id,
+                    })
+                }).then((res) => res.json())
+                    .then((res2) => {
+                        // console.log(res2)
+                        // console.log(class1_state)
+                        console.log('clearance_game1')
+                    })
+                location.href = `./factory_info.html`;
+            })
+
+        } else {
+            console.log('already clear game1')
+        }
+
+        //class2
+        if (class2_state === 'false') {
+            var clearance = document.getElementById('modall')
+            // clearance.removeEventListener('click')
+            clearance.addEventListener('click', function () {
+                //console.log('clearance')
+                const result = fetch('http://127.0.0.1:4000/game/class2', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_info_id,
+                        factory_id,
+                    })
+                }).then((res) => res.json())
+                    .then((res2) => {
+                        // console.log(res2)
+                        // console.log(class2_state)
+                        console.log('clearance_game2')
+                    })
+                location.href = `./factory_info.html`;
+            })
+
+        } else {
+            console.log('already clear game2')
+        }
+
+        //class3
+        if (class3_state === 'false') {
+            var clearance = document.getElementById('modall')
+            clearance.removeEventListener
+            clearance.addEventListener('click', function () {
+                console.log('clearance')
+                const result = fetch('http://127.0.0.1:4000/game/class3', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_info_id,
+                        factory_id,
+                    })
+                }).then((res) => res.json())
+                    .then((res2) => {
+                        // console.log(res2)
+                        // console.log(class3_state)
+                        console.log('clearance_game3')
+                    })
+                location.href = `./factory_info.html`;
+            })
+
+        } else {
+            console.log('already clear game3')
+        }
+
+    </script>
+
+
+</body>
+
+</html>

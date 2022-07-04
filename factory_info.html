@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>factoryInfo</title>
+
+    <style>
+        .contain {
+            background-image: url("https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/Img_backgroundimage_4.png");
+            background-size: cover;
+            width: 500px;
+            height: 900px;
+            /* width: 100%; */
+            display: block;
+            margin: auto;
+        }
+
+        .text1 {
+            padding-top: 180px;
+            padding-bottom: 10px;
+            width: 400px;
+            display: block;
+            margin: auto;
+        }
+
+        /* .class1 .task1 {
+            width: 380px;
+            display: block;
+            margin: auto;
+        }
+
+        .class1 .task1_done {
+            display: none;
+        }
+
+        .class1 .show .task1 {
+            display: none;
+        }
+
+        .class1 .show .task1_done {
+            width: 380px;
+            display: block;
+            margin: auto;
+        } */
+
+        div.task1 .a {
+            width: 380px;
+            display: block;
+            margin: auto;
+        }
+
+        div.task1 .b {
+            display: none;
+        }
+
+        div.task1.show .a {
+            display: none;
+        }
+
+        div.task1.show .b {
+            width: 380px;
+            display: block;
+            margin: auto;
+        }
+
+        div.task2 .a2 {
+            width: 380px;
+            display: block;
+            margin: auto;
+        }
+
+        div.task2 .b2 {
+            display: none;
+        }
+
+        div.task2.show .a2 {
+            display: none;
+        }
+
+        div.task2.show .b2 {
+            width: 380px;
+            display: block;
+            margin: auto;
+        }
+
+        div.task3 .a3 {
+            width: 380px;
+            display: block;
+            margin: auto;
+        }
+
+        div.task3 .b3 {
+            display: none;
+        }
+
+        div.task3.show .a3 {
+            display: none;
+        }
+
+        div.task3.show .b3 {
+            width: 380px;
+            display: block;
+            margin: auto;
+        }
+
+
+        .text2 {
+            width: 400px;
+            display: block;
+            margin: auto;
+        }
+
+        .button_area {
+            display: flex;
+            justify-content: center
+        }
+
+
+        div.redeem_area .button_redeem1 {
+            width: 200px;
+            display: block;
+            margin: auto;
+        }
+
+        div.redeem_area .button_redeem2 {
+            display: none;
+        }
+
+        div.redeem_area .button_redeem3 {
+            display: none;
+        }
+
+        div.redeem_area.show .button_redeem1 {
+            display: none;
+        }
+
+        div.redeem_area.show .button_redeem2 {
+            width: 200px;
+            display: block;
+            margin: auto;
+        }
+
+        div.redeem_area.show .button_redeem3 {
+            display: none;
+        }
+
+        div.redeem_area.show2 .button_redeem1 {
+            display: none;
+        }
+
+        div.redeem_area.show2 .button_redeem2 {
+            display: none;
+        }
+
+        div.redeem_area.show2 .button_redeem3 {
+            width: 200px;
+            display: block;
+            margin: auto;
+        }
+
+
+
+        div.draw_area .button_draw1 {
+            width: 200px;
+            display: block;
+            margin: auto;
+        }
+
+        div.draw_area .button_draw2 {
+            display: none;
+        }
+
+        div.draw_area .button_draw3 {
+            display: none;
+        }
+
+        div.draw_area.show .button_draw1 {
+            display: none;
+        }
+
+        div.draw_area.show .button_draw2 {
+            width: 200px;
+            display: block;
+            margin: auto;
+        }
+
+        div.draw_area.show .button_draw3 {
+            display: none;
+        }
+
+        div.draw_area.show2 .button_draw1 {
+            display: none;
+        }
+
+        div.draw_area.show2 .button_draw2 {
+            display: none;
+        }
+
+        div.draw_area.show2 .button_draw3 {
+            width: 200px;
+            display: block;
+            margin: auto;
+        }
+
+        /* modal1 */
+        div.overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: hsla(0, 0%, 0%, .5);
+
+            display: none;
+        }
+
+        /* 元素 article 置中及基本樣式 */
+        div.overlay>article {
+            background-color: white;
+            background-image: url("https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/7/img_lottery.png");
+            background-size: cover;
+            width: 80%;
+            /* height: 60%; */
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ddd;
+            padding: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .button1 {
+            width: 60%;
+            padding-top: 70%;
+            display: block;
+            margin: auto;
+        }
+
+        /* modal2 */
+        div.overlay2 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: hsla(0, 0%, 0%, .5);
+
+            display: none;
+        }
+
+        div.overlay2>article {
+            background-color: white;
+            background-image: url("https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/7/img_lottery.png");
+            background-size: cover;
+            width: 80%;
+            /* height: 60%; */
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ddd;
+            padding: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .button_area2 {
+            display: flex;
+            justify-content: center
+        }
+
+        .button2 {
+            width: 60%;
+            padding-top: 70%;
+            display: block;
+            margin: auto;
+        }
+
+        .button3 {
+            width: 60%;
+            padding-top: 70%;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <img class="text1" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/text_4_1.png" alt="">
+        <div class="task" id="task">
+            <div id="class1" class="task1" data-id="1">
+                <img id="btn1" class="a"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task1.png" alt="">
+                <img class=" b" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task1_done.png"
+                    alt="">
+            </div>
+
+            <div id="class2" class="task2" data-id="2">
+                <img id="btn2" class="a2"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task2.png" alt="">
+                <img class=" b2" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task2_done.png"
+                    alt="">
+            </div>
+
+            <div id="class3" class="task3" data-id="3">
+                <img id="btn3" class="a3"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task3.png" alt="">
+                <img class=" b3" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task3_done.png"
+                    alt="">
+            </div>
+
+        </div>
+        <div class="button_area">
+            <div id="redeem" class="redeem_area">
+                <img id="btn_redeem1" class="button_redeem1"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_exchange_disabled.png"
+                    alt="">
+                <img id="btn_redeem2" class="button_redeem2"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_exchange.png" alt="">
+                <img class="button_redeem3"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_exchange_done.png" alt="">
+            </div>
+
+            <div id="lottery" class="draw_area">
+                <img id="btn_draw1" class="button_draw1"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_lottery_disabled.png"
+                    alt="">
+                <img id="btn_draw2" class="button_draw2"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_lottery.png" alt="">
+                <img class="button_draw3"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_lottery_done.png" alt="">
+            </div>
+
+        </div>
+        <img class="text2" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/text_4_2.png" alt="">
+        <!----------------- modal 1 ------------------>
+        <div class="overlay">
+            <article>
+                <!-- <button type="button" class="btn_modal_close">關閉</button> -->
+                <img class="button1" id="button1"
+                    src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/7/btn_lottery_confirm.png" alt="">
+
+            </article>
+        </div>
+        <!----------------- modal 2 ------------------->
+        <div class="overlay2">
+            <article>
+                <!-- <button type="button" class="btn_modal_close">關閉</button> -->
+                <form id="confirm-form" class="confirm-form" method="POST">
+                    <input id="code" class="code" name="code" type="code" placeholder="請輸入身份證字號" required>
+                    <div class="button_area2">
+                        <input class="button2" type="image" id="cancel"
+                            src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/5/btn_backtaskpage.png"
+                            alt="">
+                        <input class="button3" type="image" id="confirm"
+                            src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/6/btn_confirm.png" alt="">
+                    </div>
+                </form>
+            </article>
+        </div>
+    </div>
+
+    <script src="./src/js/is.js"></script>
+    <script>
+        var user_info_id = localStorage.getItem('user_info_id')
+        var factory_id = localStorage.getItem('factory_id')
+
+        var click_href = document.getElementById("task");
+        click_href.addEventListener('click', function (e) {
+            let targetId = $(e.target).closest('div').data('id');
+            console.log(targetId)
+            localStorage.setItem('mission_id', targetId)
+            location.href = `./factory_game.html`;
+        })
+
+        //class1_true
+        // var btn1 = document.getElementById("btn1");
+        // btn1.addEventListener("click", function () {
+        //     var class1_true = document.getElementById("class1");
+        //     class1_true.classList.add("show");
+        // });
+
+        //class2_true
+        // var btn2 = document.getElementById("btn2");
+        // btn2.addEventListener("click", function () {
+        //     var class2_true = document.getElementById("class2");
+        //     class2_true.classList.add("show");
+        // });
+
+        //class3_true
+        // var btn3 = document.getElementById("btn3");
+        // btn3.addEventListener("click", function () {
+        //     var class3_true = document.getElementById("class3");
+        //     class3_true.classList.add("show");
+        // });
+
+        //redeem_button
+        //第二個按鈕要轉址去redeem頁面
+        // var btn_redeem1 = document.getElementById("btn_redeem1");
+        // btn_redeem1.addEventListener("click", function () {
+        //     var btn_exchange = document.getElementById("redeem");
+        //     btn_exchange.classList.add("show");
+        //     location.href = `./redeem.html`
+        // });
+
+
+        // var btn_redeem2 = document.getElementById("btn_redeem2");
+        // btn_redeem2.addEventListener("click", function () {
+        //     var exchange_done = document.getElementById("redeem");
+        //     exchange_done.classList.add("show2");
+        // });
+
+
+
+        //draw_button
+        // var btn_draw1 = document.getElementById("btn_draw1");
+        // btn_draw1.addEventListener("click", function () {
+        //     var btn_exchange = document.getElementById("lottery");
+        //     btn_exchange.classList.add("show");
+        // });
+
+        // var btn_draw2 = document.getElementById("btn_draw2");
+        // btn_draw2.addEventListener("click", function () {
+        //     var lottery_done = document.getElementById("lottery");
+        //     lottery_done.classList.add("show2");
+        // });
+
+
+        // button.addEventListener(function () {
+        //     if (class1 === true
+        //         && class2 === true
+        //         && class3 === true) {
+        //         fetch
+        //     }
+        // })
+
+        //進入頁面檢查使用者有無progress，若無便新增
+        const result = fetch('http://127.0.0.1:4000/factory_info', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_info_id,
+                factory_id,
+            })
+        }).then((res) => res.json())
+            .then((res2) => {
+                // console.log(res2)
+                // console.log(res2.class1)
+                // console.log(res2.class2)
+                // console.log(res2.class3)
+
+
+                localStorage.setItem('class1_state', res2.class1)
+                var class1_state = localStorage.getItem('class1')
+                // console.log(class1_state)
+
+                localStorage.setItem('class2_state', res2.class2)
+                var class2_state = localStorage.getItem('class2')
+                // console.log(class2_state)
+
+                localStorage.setItem('class3_state', res2.class3)
+                var class3_state = localStorage.getItem('class3')
+                // console.log(class3_state)
+
+                class1 = res2.class1
+                class2 = res2.class2
+                class3 = res2.class3
+
+                if (class1 === true) {
+                    var class1_true = document.getElementById("class1");
+                    class1_true.classList.add("show");
+                } else {
+                    var class1_undo = document.getElementById("class1");
+                    class1_undo.addEventListener('click', function () {
+                        // console.log('000')
+                        location.href = `./factory_game.html`
+                    })
+                }
+
+                if (class2 === true) {
+                    var class2_true = document.getElementById("class2");
+                    class2_true.classList.add("show");
+                } else {
+                    var class2_undo = document.getElementById("class2");
+                    class2_undo.addEventListener('click', function () {
+                        location.href = './factory_game.html'
+                    })
+                }
+
+                if (class3 === true) {
+                    var class3_true = document.getElementById("class3");
+                    class3_true.classList.add("show");
+                } else {
+                    var class3_undo = document.getElementById("class3");
+                    class3_undo.addEventListener('click', function () {
+                        location.href = `./factory_game.html`
+                    })
+                }
+
+                //ready for 
+                if (class1 === true && class2 === true && class3 === true) {
+                    var btn_exchange = document.getElementById("lottery");
+                    btn_exchange.classList.add("show");
+                }
+
+                if (class1 === true && class2 === true && class3 === true
+                    && res2.remain >= 0) {
+                    // console.log("remain數量足夠兌換")
+                    var btn_exchange = document.getElementById("redeem");
+                    btn_exchange.classList.add("show");
+
+                    var btn_redeem2 = document.getElementById("btn_redeem2");
+                    btn_redeem2.addEventListener("click", function () {
+                        location.href = `./redeem.html`
+                        console.log("跳轉至redeem頁面")
+                    });
+
+                }
+
+                //already
+                if (res2.already_draw > 0) {
+                    // console.log(res2.already_draw)
+                    // console.log('already_draw')
+                    var lottery_done = document.getElementById("lottery");
+                    lottery_done.classList.add("show2");
+                }
+
+                if (res2.already_redeem > 0) {
+                    console.log(res2.already_redeem)
+                    console.log('already_redeem')
+                    var exchange_done = document.getElementById("redeem");
+                    exchange_done.classList.add("show2");
+                }
+
+            })
+
+
+        //廠商抽獎 開啟彈窗後新增至名單
+        // var btn_draw2 = document.getElementById("btn_draw2");
+        // btn_draw2.addEventListener("click", function () {
+        //     var lottery_done = document.getElementById("lottery");
+        //     lottery_done.classList.add("show2");
+        //     const result2 = fetch('http://127.0.0.1:4000/game/factory_draw', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             user_info_id,
+        //             factory_id,
+        //         })
+        //     }).then((res) => res.json())
+        //         .then((res2) => {
+        //             console.log(res2)
+        //         })
+        // });
+
+
+        // 開啟 Modal 1 彈跳視窗
+        $(function () {
+            $(".button_draw2").on("click", function () {
+                $("div.overlay").fadeIn();
+            });
+
+            // 關閉 Modal
+            $("button.btn_modal_close, div.overlay").on("click", function (e) {
+                $("div.overlay").fadeOut();
+            });
+
+
+            $("div.overlay > article").on("click", function (e) {
+                e.stopPropagation();
+            });
+        });
+
+        //點擊彈窗確認按鈕，新增抽獎資料
+        var btn_factory_drew_confirm = document.getElementById("button1");
+        btn_factory_drew_confirm.addEventListener("click", function () {
+
+            const result2 = fetch('http://127.0.0.1:4000/game/factory_draw', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_info_id,
+                    factory_id,
+                })
+            }).then((res) => res.json())
+                .then((res2) => {
+                    console.log(res2)
+                    console.log('成功新增至廠商抽獎清單')
+                })
+
+            //如果gov2000還有庫存，就導向該頁面
+            const result3 = fetch('http://127.0.0.1:4000/game/gov_reward_remain', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_info_id,
+                    factory_id,
+                })
+            }).then((res) => res.json())
+                .then((res2) => {
+                    // console.log(res2)
+                    console.log('庫存足夠')
+                })
+        });
+
+        // 開啟 Modal 2 彈跳視窗
+        $(function () {
+            $(".button1").on("click", function () {
+                $("div.overlay2").fadeIn();
+            });
+
+            // // 關閉 Modal
+            // $("button.btn_modal_close, div.overlay").on("click", function (e) {
+            //     $("div.overlay").fadeOut();
+            // });
+
+
+            $("div.overlay2 > article").on("click", function (e) {
+                e.stopPropagation();
+            });
+        });
+
+
+        //按下確認按鈕，送出gov2000抽獎資訊
+        const form = document.getElementById('confirm-form')
+        form.addEventListener('submit', confirmUser)
+        function confirmUser(event) {
+            event.preventDefault();
+            const code = document.getElementById('code').value
+
+            var confirm = document.getElementById("confirm");
+            confirm.addEventListener("click", function () {
+                console.log("aaaaaa")
+                fetch('http://127.0.0.1:4000/game/gov2000', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_info_id,
+                        factory_id,
+                        code,
+                    })
+                }).then((res) => res.json())
+                    .then((res2) => {
+                        // console.log(res2)
+                        console.log('成功送出身份證字號')
+                    })
+            })
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>

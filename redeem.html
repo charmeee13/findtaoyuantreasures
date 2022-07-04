@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>redeem</title>
+    <style>
+        .contain {
+            background-image: url("https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/6/Img_backgroundimage_6.png");
+            background-size: cover;
+            width: 500px;
+            height: 900px;
+            /* width: 100%; */
+            display: block;
+            margin: auto;
+        }
+
+        #para {
+            padding-top: 250px;
+            font-size: 60px;
+            text-align: center;
+        }
+
+        .text {
+            width: 200px;
+            display: block;
+            margin: auto;
+            padding-bottom: 50px;
+        }
+
+        input {
+            display: block;
+            margin: auto;
+        }
+
+        .button {
+            padding-top: 20px;
+            width: 300px;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <p id="para"></p>
+        <img class="text" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/6/text_6.png" alt="">
+        <form id="confirm-form" class="confirm-form" method="POST">
+            <input id="code" name="code" type="phone" placeholder="請輸入兌換碼" required>
+            <input class="button" type="image" id="confirm"
+                src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/6/btn_confirm.png" alt="">
+        </form>
+
+
+    </div>
+
+
+    <script>
+        var user_info_id = localStorage.getItem('user_info_id')
+        var factory_id = localStorage.getItem('factory_id')
+        var class1_state = localStorage.getItem('class1_state')
+        var class2_state = localStorage.getItem('class2_state')
+        var class3_state = localStorage.getItem('class3_state')
+
+        function test(diff) { // timestamp
+            var hour = Math.floor(diff / 3600);
+            var minute = Math.floor((diff - hour * 3600) / 60);
+            var seconds = diff - hour * 3600 - minute * 60;
+            return ` ${hour} : ${minute} : ${seconds} `;
+        }
+
+
+
+        fetch('http://127.0.0.1:4000/claim_redeem', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_info_id,
+                factory_id,
+            })
+        }).then((res) => res.json())
+            .then((res2) => {
+                //var d1 = 1756426034; // timestamp
+                var d1 = new Date(res2.create_time10);
+                var d1_timestamp = Math.floor(d1.getTime() / 1000);
+
+                var d2 = new Date(new Date().toISOString());
+                var d2_timestamp = Math.floor(d2.getTime() / 1000);
+
+                var diff = d1_timestamp - d2_timestamp;
+
+
+                z = setInterval(function timeCounter() {
+                    diff -= 1;
+
+                    if (0 <= diff) {
+                        var d_timestamp = test(diff);
+                        $("#para").html(d_timestamp);
+                    }
+
+                    if (diff === 0) {
+                        clearInterval(z)
+                        console.log('123')
+                        $("#para").html("倒數已結束");
+                    }
+
+                }, 1000);
+
+            })
+
+
+
+        //按下確認按鈕，送出資訊
+        const form = document.getElementById('confirm-form')
+        form.addEventListener('submit', confirmUser)
+        function confirmUser(event) {
+            event.preventDefault();
+            const code = document.getElementById('code').value
+
+            var confirm = document.getElementById("confirm");
+            confirm.addEventListener("click", function () {
+                // console.log("confirm")
+                const result = fetch('http://127.0.0.1:4000/game/reward', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_info_id,
+                        factory_id,
+                        code,
+                    })
+                }).then((res) => res.json())
+                    .then((res2) => {
+                        // console.log(res2)
+                        console.log(res2.message)
+
+                        if (res2.message === 'ok') {
+                            console.log(res2.message)
+                            console.log('順利兌換獎品')
+                            location.href = `./factory_info.html`
+                        }
+                        if (res2.message === 'code error') {
+                            console.log('代碼填寫錯誤')
+                        }
+                        if (res2.message === 'already_redeem') {
+                            console.log('已經兌換過')
+                        }
+                        if (res2.message === 'over time redeem') {
+                            console.log('已經超過兑換時間')
+                        }
+                        if (res2.message === 'reward count 0') {
+                            console.log('50份贈品已全數兌換完畢')
+                        }
+
+
+                    })
+            })
+
+        }
+    </script>
+</body>
+
+</html>

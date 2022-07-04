@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <style>
+        div.task1 .a {
+            width: 380px;
+            display: block;
+            margin: auto;
+        }
+
+        div.task1 .b {
+            display: none;
+        }
+
+        div.task1.show .a {
+            display: none;
+        }
+
+        div.task1.show .b {
+            width: 380px;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="changeImg" class="change ">
+        <img id="btn" class="a" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/1/btn_start.png"
+            alt="">
+        <img class="b" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/6/btn_confirm.png" alt="">
+    </div> -->
+
+    <div id="class1" class="task1">
+        <img id="btn" class="a" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task1.png"
+            alt="">
+        <img class=" b" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task1_done.png" alt="">
+    </div>
+
+
+
+    <!-- <div id="changeImg" class="change ">
+        <img id="btn" class="a" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task1.png"
+            alt="">
+        <img class=" b" src="https://mifly-web-custom.s3.ap-northeast-1.amazonaws.com/oad/4/btn_task1_done.png" alt="">
+    </div> -->
+
+
+
+
+
+
+
+    <script>
+
+        //class1_true
+        var btn = document.getElementById("btn");
+        btn.addEventListener("click", function () {
+            var class1_true = document.getElementById("class1");
+            class1_true.classList.add("show"); // 加上 big_text 這個 class
+        });
+
+        // //class2_true
+        // var btn = document.getElementById("btn");
+        // btn.addEventListener("click", function () {
+        //     console.log('123')
+        //     var changeImg = document.getElementById("changeImg");
+        //     changeImg.classList.add("show"); // 加上 big_text 這個 class
+        // });
+
+        // //class3_true
+        // var btn = document.getElementById("btn");
+        // btn.addEventListener("click", function () {
+        //     console.log('123')
+        //     var changeImg = document.getElementById("changeImg");
+        //     changeImg.classList.add("show"); // 加上 big_text 這個 class
+        // });
+
+
+        // getElementsByClassName("change")[0].classList.add("show") //原生js 看是否轉JQ addClass
+
+
+
+            // if (res.class1 && res.class2 &&) {
+            //     //true
+            //     document.getElementsByClassName("change")[0].classList.add("show") //原生js 看是否轉JQ addClass
+            // } else {
+            //     console.log("未成功")
+            // }
+
+            // if (res.class1 && res.class2 && res.class3 == flase) {
+            //     //true
+            //     console.log("未成功")
+            // }
+
+
+    </script>
+</body>
+
+</html>
